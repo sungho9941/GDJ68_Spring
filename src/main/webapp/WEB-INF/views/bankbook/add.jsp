@@ -16,7 +16,7 @@
 	<h1 class="mb-5">add page</h1>
 	
 	
-	<form action="./add.do" method="post">
+	<form action="./add" method="post">
 		상품명<input class="form-control" type="text" name="bookName"><br>
 		상세설명<textarea class="form-control" rows="" cols="" name="bookContents"></textarea>
 		이자율<input class="form-control" type="text" name="bookRate"><br>
