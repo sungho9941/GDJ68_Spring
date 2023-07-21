@@ -18,7 +18,7 @@
 	
 	<h1>update page</h1>
 	
-	<form action="./update.do" method="post">
+	<form action="./update" method="post">
 		<input type="hidden" name="bookNum" value="${dto.bookNum}">
 		상품명<input class="form-control" type="text"  name="bookName" value="${dto.bookName}"><br>
 		상세설명<textarea class="form-control" rows="" cols="" name="bookContents">${dto.bookContents}</textarea>

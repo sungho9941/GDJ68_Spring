@@ -25,6 +25,7 @@
 	
 	<h1>${dto.bookRate}</h1>
 	
+
 	
 	<c:choose>
 		<c:when test="${dto.bookSale eq 1}">
@@ -32,6 +33,8 @@
 		</c:when>
 		<c:otherwise>
 			<h1>판매종료</h1>
+			
+			<h1>?</h1>
 		</c:otherwise>
 	</c:choose>
 	
