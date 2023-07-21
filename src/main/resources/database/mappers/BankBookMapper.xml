@@ -13,4 +13,21 @@
   		SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
   	</select>
   	
+  	<insert id="setAdd" parameterType="com.iu.main.bankBook.BankBookDTO">
+  		INSERT INTO BANKBOOK VALUES(BANK_SEQ.NEXTVAL, #{bookName}, #{bookRate}, #{bookSale}, #{bookContents})
+  	</insert>
+  	
+  	<delete id="setDelete" parameterType="java.lang.Long">
+  		DELETE BANKBOOK WHERE BOOKNUM=#{num}
+  	</delete>
+  	
+  	<update id="setUpdate" parameterType="com.iu.main.bankBook.BankBookDTO">
+  		UPDATE BANKBOOK SET 
+  		BOOKNAME=#{bookName}, 
+  		BOOKRATE=#{bookRate}, 
+  		BOOKSALE=#{bookSale}, 
+  		BOOKContents=#{bookContents} 
+  		WHERE BOOKNUM=#{bookNum} 
+  		
+  	</update>
   </mapper>

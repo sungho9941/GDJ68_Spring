@@ -36,9 +36,9 @@
 		</p>		
 		
 		<button type="submit">등록</button>
-		<input type="submit" value="ADD">
+<!-- 		<input type="submit" value="ADD">
 		<input type="reset" value="ADD">
-		<input type="button" value="ADD">
+		<input type="button" value="ADD"> -->
 	</form>
 	
 	
