@@ -17,6 +17,9 @@
           <a class="nav-link" href="/bankbook/list">product</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/student/list">학생목록</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/bankbook/add">add</a>
         </li>
         <li class="nav-item dropdown">
