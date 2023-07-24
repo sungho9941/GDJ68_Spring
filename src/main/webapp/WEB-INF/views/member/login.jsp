@@ -15,7 +15,7 @@
 	<h1 class="mt-4 mb-4">login page</h1>
 	
 	
-	<form action="./login.do" method="post">
+	<form action="./login" method="post">
 	<div class="mb-4">
 	 <label for="id" class="form-label">id</label>
  	 <input type="text" name="id" class="form-control" id="id" placeholder="id를 입력하세요">

@@ -10,7 +10,17 @@
 <body>
 	<h1>my page</h1>
 	
-	<div>${member.id} : ${sessionScope.member.name}
+	<div>
+		<p>
+			${member.id} : ${sessionScope.member.name}
+		</p>
+		<p>
+			${member.email}
+		</p>
+		<p>
+			${member.birth}
+		</p>
 	</div>
+	
 </body>
 </html>
