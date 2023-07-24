@@ -43,4 +43,24 @@ public class MemberController {
 	public void getMyPage() throws Exception{
 		
 	}
+	
+	@RequestMapping(value = "memberUpdate", method = RequestMethod.GET)
+	public void setMemberUpdate() throws Exception{
+		
+	}
+
+	@RequestMapping(value = "memberUpdate", method = RequestMethod.POST)
+	public String setMemberUpdate(MemberDTO memberDTO, HttpSession session) throws Exception{
+		MemberDTO sessionMember = (MemberDTO)session.getAttribute("member");
+		memberDTO.setId(sessionMember.getId());
+		
+		int result = memberService.setMemberUpdate(memberDTO); // service로보냄
+		if(result>0) {
+			session.setAttribute("member", memberDTO);
+		}
+		
+		return "redirect:./mypage";
+	}
+
+	
 }
