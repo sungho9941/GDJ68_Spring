@@ -19,7 +19,7 @@ public class BankBookDAO {
 	
 	//list
 	public List<BankBookDTO> getList() throws Exception{
-		System.out.println("service dao");
+
 		
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}

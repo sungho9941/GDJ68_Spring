@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.iu.main.board.BoardDAO">
+  	
+  	<select id="getList" resultType="BoardDTO">
+  		SELECT * FROM BOARD ORDER BY BOARDNUM DESC
+  	</select>
+  	
+  	<insert id="getAdd" parameterType="BoardDTO">
+  		INSERT INTO BOARD (BOARDNUM, BOARDNAME, BOARDCONTENTS, BOARDWRITER, BOARDDATE, BOARDHIT)
+  		VALUES(BOARD_SEQ.NEXTVAL, #{boardName}, #{boardContents}, #{boardWriter}, SYSDATE, 0)
+  	</insert>
+  	
+  	<select id="getDetail" resultType="BoardDTO" parameterType="BoardDTO">
+  		SELECT * FROM BOARD WHERE BOARDNUM=#{boardNum}
+  	</select>
+  	
+	<update id="getUpdate" parameterType="BoardDTO">
+		UPDATE BOARD SET 
+  		BOARDWRITER=#{boardWriter}, 
+  		BOARDNAME=#{boardName}, 
+  		BOARDCONTENTS=#{boardContents}
+  		WHERE BOARDNUM=#{boardNum} 
+	</update>
+	
+	<delete id="getDelete" parameterType="BoardDTO">
+		DELETE FROM BOARD
+		WHERE BOARDNUM=#{boardNum}
+	</delete>
+  </mapper>
