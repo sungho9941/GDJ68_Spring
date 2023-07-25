@@ -9,25 +9,25 @@
   		SELECT * FROM BOARD ORDER BY BOARDNUM DESC
   	</select>
   	
-  	<!-- <select id="getDetail" resultType="BankBookDTO" parameterType="BankBookDTO">
-  		SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
-  	</select>
-  	
-  	<insert id="setAdd" parameterType="BankBookDTO">
-  		INSERT INTO BANKBOOK VALUES(BANK_SEQ.NEXTVAL, #{bookName}, #{bookRate}, #{bookSale}, #{bookContents})
+  	<insert id="getAdd" parameterType="BoardDTO">
+  		INSERT INTO BOARD (BOARDNUM, BOARDNAME, BOARDCONTENTS, BOARDWRITER, BOARDDATE, BOARDHIT)
+  		VALUES(BOARD_SEQ.NEXTVAL, #{boardName}, #{boardContents}, #{boardWriter}, SYSDATE, 0)
   	</insert>
   	
-  	<delete id="setDelete" parameterType="Long">
-  		DELETE BANKBOOK WHERE BOOKNUM=#{num}
-  	</delete>
+  	<select id="getDetail" resultType="BoardDTO" parameterType="BoardDTO">
+  		SELECT * FROM BOARD WHERE BOARDNUM=#{boardNum}
+  	</select>
   	
-  	<update id="setUpdate" parameterType="BankBookDTO">
-  		UPDATE BANKBOOK SET 
-  		BOOKNAME=#{bookName}, 
-  		BOOKRATE=#{bookRate}, 
-  		BOOKSALE=#{bookSale}, 
-  		BOOKContents=#{bookContents} 
-  		WHERE BOOKNUM=#{bookNum} 
-  		
-  	</update> -->
+	<update id="getUpdate" parameterType="BoardDTO">
+		UPDATE BOARD SET 
+  		BOARDWRITER=#{boardWriter}, 
+  		BOARDNAME=#{boardName}, 
+  		BOARDCONTENTS=#{boardContents}
+  		WHERE BOARDNUM=#{boardNum} 
+	</update>
+	
+	<delete id="getDelete" parameterType="BoardDTO">
+		DELETE FROM BOARD
+		WHERE BOARDNUM=#{boardNum}
+	</delete>
   </mapper>

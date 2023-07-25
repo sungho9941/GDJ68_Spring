@@ -21,5 +21,19 @@ public class BoardDAO {
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}
 	
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getDetail", boardDTO);			
+	}
 	
+	public int getAdd(BoardDTO boardDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"getAdd", boardDTO);
+	}
+
+	public int getUpdate(BoardDTO boardDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"getUpdate", boardDTO);
+	}
+
+	public int getDelete(BoardDTO boardDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"getDelete", boardDTO);
+	}
 }

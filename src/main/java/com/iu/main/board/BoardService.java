@@ -16,6 +16,21 @@ public class BoardService {
 		return boardDAO.getList();
 	}
 	
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception{
+		
+		return boardDAO.getDetail(boardDTO);
+	}
 	
+	public int getAdd(BoardDTO boardDTO) throws Exception{
+		
+		return boardDAO.getAdd(boardDTO);
+	}
 	
+	public int getUpdate(BoardDTO boardDTO) throws Exception{
+		return boardDAO.getUpdate(boardDTO);
+	}
+
+	public int getDelete(BoardDTO boardDTO) throws Exception{
+		return boardDAO.getDelete(boardDTO);
+	}
 }

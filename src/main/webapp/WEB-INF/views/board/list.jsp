@@ -22,13 +22,17 @@
 
 	<table class="table table-dark table-hover">
 		<thead>
-			<th>번호</th><th>제목</th>
+			<th>번호</th><th>제목</th><th>글쓴이</th><th>작성일</th><th>조회수</th>
 		</thead>
 		<tbody>
 			<c:forEach items="${list}" var="d">
 				<tr>
 				<td>${d.boardNum}</a></td>
-				<td>${d.boardName}</td>
+				<td><a href="./detail?boardNum=${d.boardNum}">${d.boardName}</a></td>
+				<td>${d.boardWriter}</td>
+				<td>${d.boardDate}</td>
+				<td>${d.boardHit}</td>
+				
 				</tr>
 			</c:forEach>		
 		</tbody>
