@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class FrontController {
+	//add_mybatis
 //	home
 //	/ 주소 왔을 때 실행, index.jsp
 	
