@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.iu.main.board.BoardDAO">
+  	
+  	<select id="getList" resultType="BoardDTO">
+  		SELECT * FROM BOARD ORDER BY BOARDNUM DESC
+  	</select>
+  	
+  	<!-- <select id="getDetail" resultType="BankBookDTO" parameterType="BankBookDTO">
+  		SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
+  	</select>
+  	
+  	<insert id="setAdd" parameterType="BankBookDTO">
+  		INSERT INTO BANKBOOK VALUES(BANK_SEQ.NEXTVAL, #{bookName}, #{bookRate}, #{bookSale}, #{bookContents})
+  	</insert>
+  	
+  	<delete id="setDelete" parameterType="Long">
+  		DELETE BANKBOOK WHERE BOOKNUM=#{num}
+  	</delete>
+  	
+  	<update id="setUpdate" parameterType="BankBookDTO">
+  		UPDATE BANKBOOK SET 
+  		BOOKNAME=#{bookName}, 
+  		BOOKRATE=#{bookRate}, 
+  		BOOKSALE=#{bookSale}, 
+  		BOOKContents=#{bookContents} 
+  		WHERE BOOKNUM=#{bookNum} 
+  		
+  	</update> -->
+  </mapper>
