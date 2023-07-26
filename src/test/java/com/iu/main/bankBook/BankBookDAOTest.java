@@ -16,12 +16,20 @@ public class BankBookDAOTest extends Mytest{
 
 	
 	@Autowired
-	private BankBookController bankBookController;
+	private BankBookDAO bankBookDAO;
 	
 	@Test
-	public void list() throws Exception{
+	public void addTest() throws Exception{
+		BankBookDTO bankBookDTO = new BankBookDTO();
 		
-//		bankBookController.getList();
+		for(int i=0; i<30; i++) {
+			bankBookDTO.setBookName("asd입출금" + i);
+			bankBookDTO.setBookContents("asd입출금 내용"+i);
+			bankBookDTO.setBookRate(2.3);
+			bankBookDTO.setBookSale(1);
+			bankBookDAO.setAdd(bankBookDTO);
+		}
+		System.out.println("finish");
 	}
 	
 	
