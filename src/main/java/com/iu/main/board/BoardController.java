@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.main.bankBook.BankBookDTO;
+import com.iu.main.util.Pager;
 
 
 @Controller
@@ -20,11 +21,11 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String getList(Model model) throws Exception{
+	public String getList(Pager pager ,Model model) throws Exception{
 		
-		List<BoardDTO> ar = boardService.getList();
+		List<BoardDTO> ar = boardService.getList(pager);
 		model.addAttribute("list", ar);
-		
+		model.addAttribute("pager", pager);
 		return "board/list";
 	}
 	
@@ -64,7 +65,6 @@ public class BoardController {
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String getDelete(BoardDTO boardDTO) throws Exception{
-		System.out.println(boardDTO.getBoardNum() + "=-=-=-=-=-");
 		
 		int result = boardService.getDelete(boardDTO);
 		return "redirect:./list";

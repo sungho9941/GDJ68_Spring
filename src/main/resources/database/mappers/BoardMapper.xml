@@ -5,8 +5,22 @@
   
   <mapper namespace="com.iu.main.board.BoardDAO">
   	
-  	<select id="getList" resultType="BoardDTO">
-  		SELECT * FROM BOARD ORDER BY BOARDNUM DESC
+  	<select id="getTotal" resultType="Long">
+  		SELECT COUNT(BOARDNUM) FROM BOARD
+  	</select>
+  	
+  	<select id="getList" resultType="BoardDTO" parameterType="com.iu.main.util.Pager">
+  		SELECT * FROM 
+			(
+				SELECT ROWNUM R, B.* FROM 
+					(
+						SELECT * 
+						FROM board
+						WHERE boardnum>0 
+						ORDER BY boardnum DESC
+					) B
+			)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   	
   	<insert id="getAdd" parameterType="BoardDTO">
