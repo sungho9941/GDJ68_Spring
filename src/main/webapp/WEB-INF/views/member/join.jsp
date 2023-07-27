@@ -15,7 +15,7 @@
 	<h1 class="mt-4 mb-4">join page</h1>
 	
 	
-	<form action="./join.do" method="post">
+	<form action="./join" method="post" enctype="multipart/form-data">
 	<div class="mb-4">
 	 <label for="id" class="form-label">id</label>
  	 <input type="text" name="id" class="form-control" id="id" placeholder="id를 입력하세요">
@@ -39,6 +39,11 @@
 	<div class="mb-4">
 	 <label for="birth" class="form-label">birth</label>
  	 <input type="date" name="birth" class="form-control" id="birth" placeholder="email을 입력하세요">
+	</div>
+	
+	<div class="mb-4">
+	 <label for="pic" class="form-label">사진첨부</label>
+ 	 <input type="file" name="pic" class="form-control" id="pic" placeholder="email을 입력하세요">
 	</div>
 	
 	<div class="mb-3">

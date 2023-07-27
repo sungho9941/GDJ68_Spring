@@ -1,7 +1,19 @@
 package com.iu.main.util;
 
-
+/*
+ * 1. 총 개수
+ * 2. 총 페이지 수 계산
+ * 3. 총 블럭수 계산
+ * 4. page번호로 현재 블럭번호 계산
+ * 5. 현재 블럭번호로 시작번호와 끝번호 계산
+ * 6. 이전 블럭여부, 다음 블럭여부
+ * 7. 현재 블럭이 마지막 블럭일 때 끝번호를 총페이지 숫자로 대입
+ */
 public class Pager {
+	
+	//검색관련 변수
+	private String kind;
+	private String search;
 
 	private Long startRow;
 	private Long lastRow;
@@ -21,14 +33,14 @@ public class Pager {
 	private boolean next; // false면 마지막블럭
 	
 	
-	public void makePageNum(Long total) {
+	public void makePageNum(Long total) { //total : 130 -> dao 통해서 받은 총 데이터수
 		//130 -> 13
 		//131-139 -> 14
 		//90 ->9
 		//91-99 -> 10
 		
 		//1. 전체 개수로 전체 페이지 수 구하기 ------------------- total : 총 데이터 개수, getPerPage : 페이지당 게시글 수 
-		this.totalPage = total/this.getPerPage();
+		this.totalPage = total/this.getPerPage(); //13
 		if(total%this.getPerPage() !=0) {
 			this.totalPage++;
 		}
@@ -38,14 +50,14 @@ public class Pager {
 		//한 페이지에 출력할 번호의 개수
 		long perBlock=5;
 		
-		long totalBlock = this.totalPage/perBlock;
+		long totalBlock = this.totalPage/perBlock; //13/5
 		if(this.totalPage%perBlock !=0) {
 			totalBlock++;
 		}
 		
 		//3. 현재 page번호로 블럭번호 구하기
 		//현재 블럭 번호
-		long curBlock = this.getPage()/perBlock;
+		long curBlock = this.getPage()/perBlock; // 1/5
 		if(this.getPage()%perBlock !=0) {
 			curBlock++;
 		}
@@ -55,7 +67,7 @@ public class Pager {
 		// 1				1					5
 		// 2				6					10
 		// 3				11					15
-		this.startNum=(curBlock-1)*perBlock+1;
+		this.startNum=(curBlock-1)*perBlock+1;  // startNum = (1-1)*5+1 = 1
 		this.lastNum=curBlock*perBlock;
 		
 		//이전 블럭 활성화 여부
@@ -163,5 +175,25 @@ public class Pager {
 		this.next = next;
 	}
 
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if(this.search == null) {
+			this.search = "";
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	
 	
 }
