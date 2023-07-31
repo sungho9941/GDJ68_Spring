@@ -16,7 +16,7 @@
 	<h1 class="mb-5">add page</h1>
 	
 	
-	<form action="./add" method="post">
+	<form action="./add" method="post" enctype="multipart/form-data">
 		상품명<input class="form-control" type="text" name="bookName"><br>
 		상세설명<textarea class="form-control" rows="" cols="" name="bookContents"></textarea>
 		이자율<input class="form-control" type="text" name="bookRate"><br>
@@ -26,6 +26,22 @@
 			판매가능 <input type="radio" value="1" checked name="bookSale"><br>
 			판매중지 <input type="radio" value="0" name="bookSale"><br>
 		</p>
+		
+		<div class="mb-4">
+	 <label for="pic" class="form-label">사진첨부</label>
+ 	 <input type="file" name="photos" class="form-control" id="pic" placeholder="email을 입력하세요">
+	</div>
+	
+	<div class="mb-4">
+	 <label for="pic" class="form-label">사진첨부</label>
+ 	 <input type="file" name="photos" class="form-control" id="pic" placeholder="email을 입력하세요">
+	</div>
+	
+	<div class="mb-4">
+	 <label for="pic" class="form-label">사진첨부</label>
+ 	 <input type="file" name="photos" class="form-control" id="pic" placeholder="email을 입력하세요">
+	</div>
+		
 		
 		
 		<p>

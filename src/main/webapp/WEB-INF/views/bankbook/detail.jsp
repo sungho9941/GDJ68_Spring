@@ -21,11 +21,16 @@
 	<h1>detail page</h1>
 	
 	<!-- Getter 이름 : 메서드에서 get을 제외하고 첫 번째 글자를 소문자로 바꾼 것 -->
-	<h1>${requestScope.dto.bookName}</h1>
 	
+	
+	<h1>${requestScope.dto.bookName}</h1>
+	<h1>${dto.bookContents}</h1>
 	<h1>${dto.bookRate}</h1>
 	
-
+	<c:forEach items="${dto.fileDTOs}" var="f">
+		<img alt="" src="/resources/upload/bankbook/${f.fileName}">
+	</c:forEach>
+	
 	
 	<c:choose>
 		<c:when test="${dto.bookSale eq 1}">
@@ -37,6 +42,9 @@
 			<h1>?</h1>
 		</c:otherwise>
 	</c:choose>
+	
+
+	
 	
 	<a href="./update?bookNum=${dto.bookNum}">수정</a>
 	<a href="./delete?bookNum=${dto.bookNum}">삭제</a>

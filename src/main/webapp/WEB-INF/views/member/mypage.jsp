@@ -12,6 +12,9 @@
 	
 	<div>
 		<p>
+			<img alt="" src="../resources/upload/member/${member.memberFileDTO.fileName}">
+		</p>
+		<p>
 			${member.id} : ${sessionScope.member.name}
 		</p>
 		<p>

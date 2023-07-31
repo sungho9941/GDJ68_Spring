@@ -3,6 +3,7 @@ package com.iu.main.file;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
+import java.util.Random;
 
 import org.junit.Test;
 
@@ -11,6 +12,13 @@ import com.iu.main.Mytest;
 public class CalendarTest extends Mytest{
 
 	@Test
+	public void test2() {
+		Calendar ca = Calendar.getInstance();
+		Random random = new Random(ca.getTimeInMillis());
+		random.nextInt();
+	}
+	
+	//@Test
 	public void test() {
 		Calendar ca = Calendar.getInstance();
 		System.out.println(ca);
@@ -26,7 +34,7 @@ public class CalendarTest extends Mytest{
 		
 		long l1 = ca.getTimeInMillis();
 		long l2 = ca2.getTimeInMillis();
-		
+	
 		long result = l2 - l1;
 		System.out.println(result);
 		

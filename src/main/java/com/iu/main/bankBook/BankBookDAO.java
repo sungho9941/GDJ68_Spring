@@ -27,7 +27,8 @@ public class BankBookDAO {
 	
 	//list
 	public List<BankBookDTO> getList(Pager pager) throws Exception{
-
+		
+		
 		
 		return sqlSession.selectList(NAMESPACE+"getList", pager);
 	}
@@ -38,6 +39,10 @@ public class BankBookDAO {
 		return sqlSession.selectOne(NAMESPACE+"getDetail", bankBookDTO);
 	}
 
+	public long getSequence() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getSequence");
+	}
+	
 	//add
 	public int setAdd(BankBookDTO bankBookDTO) throws Exception{
 		
@@ -53,5 +58,9 @@ public class BankBookDAO {
 	//delete
 	public int setDelete(Long num) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDelete", num);
+	}
+	
+	public int setFileAdd(BankBookFileDTO bankBookFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFileAdd", bankBookFileDTO);
 	}
 }
