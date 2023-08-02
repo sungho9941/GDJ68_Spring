@@ -13,13 +13,13 @@
 	<c:import url="../temp/header.jsp"></c:import>
 
 
-	<h1 class="mb-5">add page</h1>
+	<h1 class="mb-5">${board }add page</h1>
 	
 	
-	<form action="./add" method="post">
-		제목<input class="form-control" type="text" name="boardName"><br>
-		내용<textarea class="form-control" rows="" cols="" name="boardContents"></textarea>
-		작성자<input class="form-control" type="text" name="boardWriter"><br>
+	<form action="./add" method="post" enctype="multipart/form-data">
+		제목<input class="form-control" type="text" name="name"><br>
+		내용<textarea class="form-control" rows="" cols="" name="contents"></textarea>
+		작성자<input class="form-control" type="text" value="${member.id} " name="writer"><br>
 		
 		
 	
@@ -31,6 +31,25 @@
 			<option value="0" selected>판매중지</option>
 		</select> -->
 		</p>		
+		
+		<div id="fileList" class="my-5">
+					<div class="input-group mb-3">
+						<input type="file" class="form-control" id="photos" name="photos">
+					</div>
+					<div class="input-group mb-3">
+						<input type="file" class="form-control" id="photos" name="photos">
+					</div>					
+					<div class="input-group mb-3">
+						<input type="file" class="form-control" id="photos" name="photos">
+					</div>
+					<div class="input-group mb-3">
+						<input type="file" class="form-control" id="photos" name="photos">
+					</div>
+					<div class="input-group mb-3">
+						<input type="file" class="form-control" id="photos" name="photos">
+					</div>					
+	
+				</div>
 		
 		<button type="submit">등록</button>
 <!-- 		<input type="submit" value="ADD">

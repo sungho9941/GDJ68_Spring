@@ -6,23 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <c:import url="../temp/bootStrap.jsp"></c:import>
-
 </head>
 <body>
 
 	<c:import url="../temp/header.jsp"></c:import>
+
+
+	<h1 class="mb-5">${board} Reply page</h1>
 	
 	
+	<form action="./reply" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="num" value="${num }">
+		제목<input class="form-control" type="text" name="name"><br>
+		내용<textarea class="form-control" rows="" cols="" name="contents"></textarea>
+		작성자<input class="form-control" type="text" value="${member.id}" name="writer"><br>
+		
+		
 	
-	<h1>update page</h1>
-	
-	<form action="./update" method="post">
-		<input type="hidden" name="num" value="${dto.num}">
-		작성자<input class="form-control" type="text" name="writer" value="${dto.writer}"><br>
-		제목<input class="form-control" type="text" name="name" value="${dto.name}"><br>
-		내용<input class="form-control" type="text" name="contents" value="${dto.contents}"><br>
 		
 		
 		<p>
@@ -33,9 +34,11 @@
 		</p>		
 		
 		<button type="submit">등록</button>
+<!-- 		<input type="submit" value="ADD">
+		<input type="reset" value="ADD">
+		<input type="button" value="ADD"> -->
 	</form>
-		
-</body>
-</html>
+	
+	
 </body>
 </html>

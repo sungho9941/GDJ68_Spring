@@ -1,42 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.iu.main.qna.QnaDAO">
-	<sql id="searchSql">
-	  		WHERE BOARDNUM>0
-				<choose>
-					<when test="kind=='name'">
-						AND BOARDNAME LIKE '%'||#{search}||'%'
-					</when>
-					<otherwise>
-						AND BOARDCONTENTS LIKE '%'||#{search}||'%'
-					</otherwise>
-				</choose>
-	  	</sql>
-
-	<select id="getTotal" parameterType="com.iu.main.util.Pager" resultType="Long">
-  		SELECT COUNT(BOARDNUM) FROM QNABOARD
-  		<include refid="searchSql"></include>
-  	</select>
-  	
-	<select id="getList" resultType="com.iu.main.qna.QnaDTO" parameterType="com.iu.main.util.Pager">
-  		SELECT * FROM 
-			(
-				SELECT ROWNUM R, B.* FROM 
-					(
-						SELECT * 
-						FROM QNABOARD
-						<include refid="searchSql"></include>
-						ORDER BY BOARDNUM DESC
-					) B
-			)
-		WHERE R BETWEEN #{startRow} AND #{lastRow}
+<mapper namespace="com.iu.main.board.qna.QnaDAO">
+	<!-- SQL 조각 -->
+	<sql id="searchSQL">
+		WHERE boardNum > 0
+		AND
+		<choose>
+			<when test="kind == 'writer'">
+				writer LIKE '%' || #{search} || '%'
+			</when>
+			<when test="kind == 'title'">
+				boardName LIKE '%' || #{search} || '%'
+			</when>
+			<otherwise>
+				boardContents LIKE '%' || #{search} || '%'
+		 	</otherwise>
+		</choose>
+	</sql>
+	
+	
+	<select id="getTotal" parameterType="Pager" resultType="Long">
+		SELECT COUNT(boardNum)
+			FROM qnaBoard
+		<include refid="searchSQL" />
 	</select>
+	
+	<select id="getList" parameterType="Pager" resultMap="getSelectResult">
+		SELECT *
+			FROM
+			(
+				SELECT ROWNUM r, b.*
+					FROM
+					(
+						SELECT *
+							FROM qnaBoard
+						<include refid="searchSQL" />
+						<!-- ORDER BY boardNum DESC -->
+						ORDER BY REF DESC, STEP ASC
+					) b
+			)
+		WHERE r BETWEEN #{startRow} AND #{lastRow}
+		
+	</select>
+	
+	<resultMap type="QnaDTO" id="getSelectResult">
+  		<id column="boardNum" property="num"/>
+  		<result column="boardName" property="name"/>
+  		<result column="boardDate" property="date"/>
+  		<result column="boardHit" property="hit"/>	
+  		<result column="boardContents" property="contents"/>	
+  	</resultMap>
   	
   	
-
+  	<select id="getDetail" parameterType="QnaDTO" resultMap="getDetailResult">
+	  		SELECT * FROM QNABOARD WHERE BOARDNUM=#{num}
+<!-- 	  		SELECT Q.*, QF.*
+	  		FROM QNABOARD Q
+	  			 LEFT JOIN
+	  			 QNAFILE QF
+	  			 on Q.QNANUM=QF.QNANUM
+	  		WHERE Q.QNANUM=#{num} -->
+	  	</select>
   	
-  	
-  	</mapper>
+	  	<resultMap type="QnaDTO" id="getDetailResult">
+	  		<id column="BOARDNUM" property="num"/>
+	  		<result column="BOARDNAME" property="name"/>
+	  		<result column="BOARDCONTENTS" property="contents"/>
+	  		<result column="BOARDDATE" property="date"/>
+	  		<result column="BOARDHIT" property="hit"/>
+	  		</resultMap>
+	  	
+  	<update id="setStepUpdate" parameterType="QnaDTO">
+  		UPDATE QNABOARD SET STEP=STEP+1 
+  		WHERE REF = #{ref} AND STEP > #{step}
+  	</update>
+	
+	<insert id="setFileAdd" parameterType="QnaFileDTO">
+  		INSERT INTO QNAFILE
+  		VALUES (FILE_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{originalName} )
+  	</insert>
+	  	
+	  	<insert id="setAdd" parameterType="QnaDTO">
+	  		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+	  			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+	  		</selectKey>
+	  	
+	  		INSERT INTO QNABOARD (BOARDNUM, WRITER, BOARDNAME, BOARDCONTENTS, BOARDDATE, BOARDHIT, REF, STEP, DEPTH)
+	  		VALUES (#{num}, #{writer}, #{name}, #{contents}, sysdate, 0, #{num}, 0, 0)
+	  	
+	  	</insert>
+	
+	<insert id="setReplyAdd" parameterType="QnaDTO">
+		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+			SELECT board_seq.NEXTVAL FROM DUAL
+		</selectKey>
+		 
+		INSERT INTO QNABOARD (BOARDNUM, WRITER, BOARDNAME, BOARDCONTENTS, BOARDDATE, BOARDHIT, REF, STEP, DEPTH)
+		VALUES (#{num}, #{writer}, #{name}, #{contents}, sysdate, 0, #{ref}, #{step}, #{depth})
+	</insert>
+	
+	<update id="setUpdate" parameterType="QnaDTO">
+		UPDATE QNABOARD SET BOARDNAME = #{name}, BOARDCONTENTS = #{contents}, BOARDDATE = SYSDATE
+		WHERE BOARDNUM = #{num}
+	</update>
+	
+	<delete id="setDelete" parameterType="QnaDTO">
+		DELETE FROM QNABOARD WHERE BOARDNUM = #{num}
+	</delete>
+</mapper>

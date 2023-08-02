@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.iu.main.board.notice.NoticeDAO">
+	<!-- SQL 조각 -->
+	<sql id="searchSQL">
+		WHERE boardNum > 0
+		AND
+		<choose>
+			<when test="kind == 'writer'">
+				writer LIKE '%' || #{search} || '%'
+			</when>
+			<when test="kind == 'title'">
+				boardName LIKE '%' || #{search} || '%'
+			</when>
+			<otherwise>
+				boardContents LIKE '%' || #{search} || '%'
+		 	</otherwise>
+		</choose>
+	</sql>
+	
+	
+	<select id="getTotal" parameterType="Pager" resultType="Long">
+		SELECT COUNT(boardNum)
+			FROM board
+		<include refid="searchSQL" />
+	</select>
+	
+	<select id="getList" parameterType="Pager" resultMap="getSelectResult">
+		SELECT *
+			FROM
+			(
+				SELECT ROWNUM r, b.*
+					FROM
+					(
+						SELECT *
+							FROM board
+						<include refid="searchSQL" />
+						ORDER BY boardNum DESC
+					) b
+			)
+		WHERE r BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<resultMap type="NoticeDTO" id="getSelectResult">
+  		<id column="boardNum" property="num"/>
+  		<result column="boardName" property="name"/>
+  		<result column="boardDate" property="date"/>
+  		<result column="boardHit" property="hit"/>	
+  	</resultMap>
+	
+	<select id="getDetail" parameterType="NoticeDTO" resultMap="getDetailResult">
+		SELECT b.*, bf.*
+			FROM board b LEFT JOIN boardFile bf
+				ON (b.boardNum = bf.boardNum)
+		WHERE b.boardNum = #{num}
+	</select>
+	
+	<resultMap id="getDetailResult" type="NoticeDTO">
+		<id column="boardNum" property="num" />
+		<result column="writer" property="writer" />
+		<result column="boardName" property="name" />
+		<result column="boardContents" property="contents" />
+		<result column="boardDate" property="date" />
+		<result column="boardHit" property="hit" />
+		
+		<!-- 
+		<collection property="noticeFileDTOs" javaType="List" ofType="NoticeFileDTO">
+			<id column="fileNum" property="fileNum" />
+			<result column="fileName" property="fileName" />
+			<result column="originalFileName" property="originalFileName" />
+		</collection>
+		 -->
+	</resultMap>
+	
+	<insert id="setAdd" parameterType="NoticeDTO">
+		<selectKey keyProperty="boardNum" order="BEFORE" resultType="Long">
+			SELECT board_seq.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO board VALUES(#{boardNum}, #{writer}, #{boardName}, #{boardContents}, SYSDATE, 0)
+	</insert>
+	
+	<insert id="setFileAdd" parameterType="NoticeFileDTO">
+		INSERT INTO boardFile VALUES(file_seq.NEXTVAL, #{boardNum}, #{fileName}, #{originalFileName})
+	</insert>
+	
+	<update id="setUpdate" parameterType="NoticeDTO">
+		UPDATE board SET writer = #{writer}, boardName = #{boardName}, boardContents = #{boardContents}, boardDate = SYSDATE
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<delete id="setDelete" parameterType="NoticeDTO">
+		DELETE FROM board WHERE boardNum = #{boardNum}
+	</delete>
+</mapper>

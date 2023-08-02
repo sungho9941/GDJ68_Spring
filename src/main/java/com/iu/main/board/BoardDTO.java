@@ -3,49 +3,48 @@ package com.iu.main.board;
 import java.sql.Date;
 
 public class BoardDTO {
-	private Integer boardNum;
-	private String boardWriter;
-	private String boardName;
-	private Date boardDate;
-	private Integer boardHit;
-	private String boardContents;
 	
-	
-	public Integer getBoardNum() {
-		return boardNum;
+	private Long num;
+	private String writer;
+	private String name;
+	private Date date;
+	private Long hit;
+	private String contents;
+	public Long getNum() {
+		return num;
 	}
-	public void setBoardNum(Integer boardNum) {
-		this.boardNum = boardNum;
+	public void setNum(Long num) {
+		this.num = num;
 	}
-	public String getBoardWriter() {
-		return boardWriter;
+	public String getWriter() {
+		return writer;
 	}
-	public void setBoardWriter(String boardWriter) {
-		this.boardWriter = boardWriter;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
-	public String getBoardName() {
-		return boardName;
+	public String getName() {
+		return name;
 	}
-	public void setBoardName(String boardName) {
-		this.boardName = boardName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public Date getBoardDate() {
-		return boardDate;
+	public Date getDate() {
+		return date;
 	}
-	public void setBoardDate(Date boardDate) {
-		this.boardDate = boardDate;
+	public void setDate(Date date) {
+		this.date = date;
 	}
-	public Integer getBoardHit() {
-		return boardHit;
+	public Long getHit() {
+		return hit;
 	}
-	public void setBoardHit(Integer boardHit) {
-		this.boardHit = boardHit;
+	public void setHit(Long hit) {
+		this.hit = hit;
 	}
-	public String getBoardContents() {
-		return boardContents;
+	public String getContents() {
+		return contents;
 	}
-	public void setBoardContents(String boardContents) {
-		this.boardContents = boardContents;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	
 	

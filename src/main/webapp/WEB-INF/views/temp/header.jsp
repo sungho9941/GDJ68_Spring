@@ -20,7 +20,7 @@
           <a class="nav-link" href="/bankbook/add">add</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="/notice/list">board</a>
+          <a class="nav-link" href="/notice/list">notice</a>
         </li>
          <li class="nav-item">
           <a class="nav-link" href="/qna/list">Q&A</a>

@@ -21,18 +21,24 @@
 	<h1>detail page</h1>
 	
 	<!-- Getter 이름 : 메서드에서 get을 제외하고 첫 번째 글자를 소문자로 바꾼 것 -->
-	작성자 <textarea class="form-control mb-5">${dto.boardWriter}</textarea><h1></h1>	
-	제목 <h1>${dto.boardName}</h1>
-	내용 <h1>${dto.boardContents}</h1>
-	작성일 <h1>${dto.boardDate}</h1>
+	작성자 <textarea class="form-control mb-5">${dto.writer}</textarea><h1></h1>	
+	제목 <h1>${dto.name}</h1>
+	내용 <h1>${dto.contents}</h1>
+	작성일 <h1>${dto.date}</h1>
 	
 
 
 
-
+	<form>
+		<c:if test="${board ne 'notice'}">
+		
+		 <a href="./reply?num=${dto.num}">답글</a>
+		</c:if>
+	</form>
 	
-	<a href="./update?boardNum=${dto.boardNum}">수정</a>
-	<a href="./delete?boardNum=${dto.boardNum}">삭제</a>
+	<a href="./update?num=${dto.num}">수정</a>
+	<a href="./delete?num=${dto.num}">삭제</a>
+	
 	 
 	
 	

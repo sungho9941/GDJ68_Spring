@@ -18,7 +18,7 @@
 	
 
 	<section class="container mt-5">
-	<h1 class="mb-5" align="center">board list</h1>
+	<h1 class="mb-5" align="center">${board }z list</h1>
 
 	<table class="table table-dark table-hover">
 		<thead>
@@ -27,11 +27,17 @@
 		<tbody>
 			<c:forEach items="${list}" var="d">
 				<tr>
-				<td>${d.boardNum}</a></td>
-				<td><a href="./detail?boardNum=${d.boardNum}">${d.boardName}</a></td>
-				<td>${d.boardWriter}</td>
-				<td>${d.boardDate}</td>
-				<td>${d.boardHit}</td>
+				<td>${d.num}</a></td>
+				
+				<td><a href="./detail?num=${d.num}">
+				<c:catch>
+						<c:forEach begin="1" end="${d.depth}">></c:forEach>
+				</c:catch>
+				${d.name}</a></td>
+				
+				<td>${d.writer}</td>
+				<td>${d.date}</td>
+				<td>${d.hit}</td>
 				
 				</tr>
 			</c:forEach>		

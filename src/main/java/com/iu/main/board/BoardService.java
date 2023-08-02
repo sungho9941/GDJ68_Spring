@@ -2,41 +2,27 @@ package com.iu.main.board;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.main.util.Pager;
 
-@Service
-public class BoardService {
+public interface BoardService {
 
-	@Autowired
-	BoardDAO boardDAO;
+	//list
+	public List<BoardDTO> getList(Pager pager) throws Exception;
 	
-	public List<BoardDTO> getList(Pager pager) throws Exception{
-		
-		pager.makeRowNum();
-		Long total = boardDAO.getTotal(pager);
-		pager.makePageNum(total);
-		
-		return boardDAO.getList(pager);
-	}
+	//detail
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception;
 	
-	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception{
-		
-		return boardDAO.getDetail(boardDTO);
-	}
+	//add
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception;
 	
-	public int getAdd(BoardDTO boardDTO) throws Exception{
-		
-		return boardDAO.getAdd(boardDTO);
-	}
+	//update
+	public int setUpdate(BoardDTO boardDTO) throws Exception;
 	
-	public int getUpdate(BoardDTO boardDTO) throws Exception{
-		return boardDAO.getUpdate(boardDTO);
-	}
-
-	public int getDelete(BoardDTO boardDTO) throws Exception{
-		return boardDAO.getDelete(boardDTO);
-	}
+	//delete
+	public int setDelete(BoardDTO boardDTO) throws Exception;
+	
 }
