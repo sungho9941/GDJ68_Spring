@@ -34,7 +34,7 @@ public class NoticeDAO implements BoardDAO{
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		
-		return 0;
+		return session.update(NAMESPACE+"setUpdate", boardDTO);
 	}
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {

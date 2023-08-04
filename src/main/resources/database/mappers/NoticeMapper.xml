@@ -76,11 +76,11 @@
 	</resultMap>
 	
 	<insert id="setAdd" parameterType="NoticeDTO">
-		<selectKey keyProperty="boardNum" order="BEFORE" resultType="Long">
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
 			SELECT board_seq.NEXTVAL FROM DUAL
 		</selectKey>
 		
-		INSERT INTO board VALUES(#{boardNum}, #{writer}, #{boardName}, #{boardContents}, SYSDATE, 0)
+		INSERT INTO board VALUES(#{num}, #{name}, SYSDATE, 0, #{contents}, #{writer})
 	</insert>
 	
 	<insert id="setFileAdd" parameterType="NoticeFileDTO">
@@ -88,10 +88,12 @@
 	</insert>
 	
 	<update id="setUpdate" parameterType="NoticeDTO">
-		UPDATE board SET writer = #{writer}, boardName = #{boardName}, boardContents = #{boardContents}, boardDate = SYSDATE
-		WHERE boardNum = #{boardNum}
+		UPDATE board SET writer = #{writer}, boardName = #{name}, boardContents = #{contents}, boardDate = SYSDATE
+		WHERE boardNum = #{num}
 	</update>
+	<!-- 
 	
+	 -->
 	<delete id="setDelete" parameterType="NoticeDTO">
 		DELETE FROM board WHERE boardNum = #{boardNum}
 	</delete>

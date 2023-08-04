@@ -35,13 +35,13 @@ public class NoticeService implements BoardService{
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		
-		return 0;
+		return noticeDAO.setAdd(boardDTO);
 	}
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		
-		return 0;
+		return noticeDAO.setUpdate(boardDTO);
 	}
 
 	@Override

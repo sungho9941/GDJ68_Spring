@@ -15,30 +15,41 @@
 	<h1 class="mt-4 mb-4">join page</h1>
 	
 	
-	<form action="./join" method="post" enctype="multipart/form-data">
+	<form action="./join" method="post" enctype="multipart/form-data" id="frm">
 	<div class="mb-4">
 	 <label for="id" class="form-label">id</label>
  	 <input type="text" name="id" class="form-control" id="id" placeholder="id를 입력하세요">
+	<span id="idx"></span>
 	</div>
-	
+
 	<div class="mb-4">
 	 <label for="pw" class="form-label">pw</label>
  	 <input type="password" name="pw" class="form-control" id="pw" placeholder="pw를 입력하세요">
+	  <span id="pwx"></span>
 	</div>
+
+	<div class="mb-4">
+		<label for="pw" class="form-label">pw</label>
+		 <input type="password" name="pw2" class="form-control" id="pw2" placeholder="pw를 입력하세요">
+		 <span id="pwx2"></span>
+		</div>
 	
 	<div class="mb-4">
 	 <label for="name" class="form-label">name</label>
  	 <input type="text" name="name" class="form-control" id="name" placeholder="name을 입력하세요">
+	  <span id="namex"></span>
 	</div>
 	
 	<div class="mb-4">
 	 <label for="email" class="form-label">email</label>
  	 <input type="email" name="email" class="form-control" id="email" placeholder="email을 입력하세요">
+	  <span id="emailx"></span>
 	</div>
 	
 	<div class="mb-4">
 	 <label for="birth" class="form-label">birth</label>
  	 <input type="date" name="birth" class="form-control" id="birth" placeholder="email을 입력하세요">
+	  <span id="birthx"></span>
 	</div>
 	
 	<div class="mb-4">
@@ -47,10 +58,10 @@
 	</div>
 	
 	<div class="mb-3">
-		<button class="btn btn-primary">회원가입</button>
+		<button class="btn btn-primary" type="button" id="btn">회원가입</button>
 	</div>
 	
 	</form>
-		
+		<script src="../resources/js/member.js"></script>
 </body>
 </html>

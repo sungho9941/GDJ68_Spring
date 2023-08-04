@@ -49,20 +49,20 @@
 	  <ul class="pagination">
 	  <c:if test="${pager.pre }">
 	    <li class="page-item">
-	      <a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+	      <a class="page-link move" href="#" data-num="${pager.startNum-1}" aria-label="Previous">
 	        <span aria-hidden="true">&laquo;</span>
 	      </a>
 	    </li>
 	    </c:if>
 	    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 	    
-	    <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+	    <li class="page-item"><a class="page-link move" href="#" data-num="${i}">${i}</a></li>
 	    
 	    </c:forEach>
 	    
 	    <c:if test="${pager.next }">
 	    <li class="page-item">
-	      <a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+	      <a class="page-link move" href="#" data-num="${pager.lastNum+1}" aria-label="Next">
 	        <span aria-hidden="true">&raquo;</span>
 	      </a>
 	    </li>
@@ -71,11 +71,13 @@
 	</nav>
 
 <div class="input-group mb-3">
-  	<form action="./list" method="get">
+  	<form action="./list" method="get" id="frm">
+		<input type="hidden" value="${pager.page}" name="page" id="page">
+
   		<select name="kind" class="form-select" aria-label="Default select example">
-	 	<option value="name">제목</option>
-	  	<option value="contents">내용</option>
-	  	<option value="writer">작성자</option>
+	 	<option class="kind" value="name">제목</option>
+	  	<option class="kind" value="contents">내용</option>
+	  	<option class="kind" value="writer">작성자</option>
 	    </select>
 	  
   <input type="text" name="search" class="form-control" aria-label="Amount (to the nearest dollar)">
@@ -96,6 +98,9 @@
 	</c:forEach>
 	 --%>
 	 
-	
+	 <script src="/resources/js/list.js"></script>
+	<script>
+		// setData('${pager.kind}');
+	</script>
 </body>
 </html>

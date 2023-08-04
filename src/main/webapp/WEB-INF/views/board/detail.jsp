@@ -29,17 +29,22 @@
 
 
 
-	<form>
-		<c:if test="${board ne 'notice'}">
-		
-		 <a href="./reply?num=${dto.num}">답글</a>
-		</c:if>
+	<form id="frm" action="">
+		<input type="hidden" name="num" value="${dto.num}">
 	</form>
+
+		<c:if test="${board ne 'notice'}">
+		 <!-- <a href="./reply?num=${dto.num}">답글</a> -->
+		<button id="reply" class="c1" data-url="reply">답글</button>
+		</c:if>
 	
-	<a href="./update?num=${dto.num}">수정</a>
-	<a href="./delete?num=${dto.num}">삭제</a>
+	<!-- <a href="./update?num=${dto.num}">수정</a>
+	<a href="./delete?num=${dto.num}">삭제</a> -->
 	
-	 
+	<button id="update" data-url="update" class="c1">수정</button>
+	
+	<button id="del" data-url="delete" class="btn btn-outline-primary c1" for="btn-check-outlined" data-delete-name="num" data-delete-num="${dto.num}">삭제</button>
+	 <script src="../resources/js/delete.js"></script>
 	
 	
 	<%-- 

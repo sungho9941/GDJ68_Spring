@@ -16,10 +16,10 @@
 	<h1 class="mb-5">${board }add page</h1>
 	
 	
-	<form action="./add" method="post" enctype="multipart/form-data">
-		제목<input class="form-control" type="text" name="name"><br>
-		내용<textarea class="form-control" rows="" cols="" name="contents"></textarea>
-		작성자<input class="form-control" type="text" value="${member.id} " name="writer"><br>
+	<form class="col-md-7" action="./add" method="post" id="frm" enctype="multipart/form-data">
+		제목<input class="form-control" type="text" name="name" id="name"><br>
+		내용<textarea class="form-control" rows="" cols="" name="contents" id="contents"></textarea>
+		작성자<input class="form-control" type="text" value="${member.id} " name="writer" id="writer"><br>
 		
 		
 	
@@ -33,30 +33,33 @@
 		</p>		
 		
 		<div id="fileList" class="my-5">
-					<div class="input-group mb-3">
-						<input type="file" class="form-control" id="photos" name="photos">
-					</div>
-					<div class="input-group mb-3">
-						<input type="file" class="form-control" id="photos" name="photos">
-					</div>					
-					<div class="input-group mb-3">
-						<input type="file" class="form-control" id="photos" name="photos">
-					</div>
-					<div class="input-group mb-3">
-						<input type="file" class="form-control" id="photos" name="photos">
-					</div>
-					<div class="input-group mb-3">
-						<input type="file" class="form-control" id="photos" name="photos">
-					</div>					
-	
-				</div>
+			<div class="mb-3">
+				<button type="button" id="add">file추가</button>
+			</div>
+
+		</div>
 		
-		<button type="submit">등록</button>
-<!-- 		<input type="submit" value="ADD">
-		<input type="reset" value="ADD">
-		<input type="button" value="ADD"> -->
+		<button type="button" id="btn">등록</button>
 	</form>
 	
+	<script src="../resources/js/file.js"></script>
+
+	<script>
+		const btn = document.getElementById("btn");
+		const name = document.getElementById("name");
+		const frm = document.getElementById("frm");
+
+		btn.addEventListener("click", function(){
+			console.log(name.value=="");
+			console.log(name.length==0);
+			if(name.value==""){
+				alert("제목은 필수입니다");
+				name.focus();
+			}else{
+				frm.submit();
+			}
+		})
+	</script>
 	
 </body>
 </html>

@@ -63,13 +63,7 @@ public class QnaController {
 		model.addAttribute("dto", qnaDTO);
 		return "board/update";
 	}
-/*
- 		BoardDTO parentDTO = new BoardDTO();
-		parentDTO.setNum(qnaDTO.getNum());
-		
-		parentDTO = qnaDAO.getDetail(parentDTO);
-		QnaDTO p = (QnaDTO)parentDTO;
- */
+
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String setUpdate(QnaDTO qnaDTO, MultipartFile[] photos, HttpSession session) throws Exception{
 		int result = qnaService.setUpdate(qnaDTO);
@@ -88,7 +82,7 @@ public class QnaController {
 		return "redirect:./list";
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String setDelete(QnaDTO qnaDTO) throws Exception{
 		int result = qnaService.setDelete(qnaDTO);
 		return "redirect:./list";
