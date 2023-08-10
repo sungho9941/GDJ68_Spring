@@ -34,6 +34,9 @@ public class QnaDAO implements BoardDAO{
 
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
+		System.out.println(boardDTO.getNum()+"asdasd");
+		System.out.println(boardDTO.getName()+"asdasd");
+		System.out.println(boardDTO.getContents()+"asdasd");
 		
 		return session.insert(NameSPACE+"setAdd", boardDTO);
 	}

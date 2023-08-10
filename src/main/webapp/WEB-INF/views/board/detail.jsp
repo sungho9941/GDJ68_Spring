@@ -28,7 +28,13 @@
 	
 
 
-
+		<div>
+			<c:forEach items="${dto.dtos}" var="f">
+				<img src="../resources/upload/${board}/${f.fileName}">
+			</c:forEach>
+		</div>
+		
+		
 	<form id="frm" action="">
 		<input type="hidden" name="num" value="${dto.num}">
 	</form>

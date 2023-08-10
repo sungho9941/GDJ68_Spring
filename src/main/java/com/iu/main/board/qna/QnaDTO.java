@@ -1,6 +1,7 @@
 package com.iu.main.board.qna;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.iu.main.board.BoardDTO;
 
@@ -9,7 +10,8 @@ public class QnaDTO extends BoardDTO{
 	private Long ref;
 	private Long step;
 	private Long depth;
-
+	private List<QnaFileDTO> dtos;
+	
 	public Long getRef() {
 		return ref;
 	}
@@ -28,7 +30,13 @@ public class QnaDTO extends BoardDTO{
 	public void setDepth(Long depth) {
 		this.depth = depth;
 	}
+	public List<QnaFileDTO> getDtos() {
+		return dtos;
+	}
+	public void setDtos(List<QnaFileDTO> dtos) {
+		this.dtos = dtos;
+	}
 	
-
+	
 	
 }

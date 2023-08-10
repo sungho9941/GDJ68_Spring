@@ -53,7 +53,21 @@ public class QnaController {
 	public String setAdd(QnaDTO qnaDTO, MultipartFile[] photos, HttpSession session) throws Exception{
 		int result = qnaService.setAdd(qnaDTO, photos, session);
 		return "redirect:./list";
+		
+		/*
+		 int result = noticeService.setAdd(noticeDTO, photos, session);
+			
+			String message="등록 실패";
+			if(result>0) {
+				message="등록 성공";
+			}
+			model.addAttribute("message", message);
+			model.addAttribute("url", "list");		
+			return "commons/result";
+		 * */
 	}
+	
+	
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String setUpdate(QnaDTO qnaDTO, Model model) throws Exception{
@@ -66,7 +80,7 @@ public class QnaController {
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String setUpdate(QnaDTO qnaDTO, MultipartFile[] photos, HttpSession session) throws Exception{
-		int result = qnaService.setUpdate(qnaDTO);
+		int result = qnaService.setUpdate(qnaDTO, photos, session);
 		return "redirect:./detail?num="+qnaDTO.getNum();
 	}
 	

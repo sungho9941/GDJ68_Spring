@@ -45,7 +45,7 @@
 	</table>
 	
 	
-	<nav aria-label="Page navigation example">
+	<!-- <nav aria-label="Page navigation example">
 	  <ul class="pagination">
 	  <c:if test="${pager.pre }">
 	    <li class="page-item">
@@ -60,7 +60,7 @@
 	    
 	    </c:forEach>
 	    
-	    <c:if test="${pager.next }">
+	    <c:if test="${pager.next}">
 	    <li class="page-item">
 	      <a class="page-link move" href="#" data-num="${pager.lastNum+1}" aria-label="Next">
 	        <span aria-hidden="true">&raquo;</span>
@@ -68,7 +68,34 @@
 	    </li>
 	    </c:if>
 	  </ul>
-	</nav>
+	</nav> -->
+	
+	
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+  <c:if test="${pager.pre }">
+    <li class="page-item">
+      <a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    </c:if>
+    <c:forEach begin="${pager.startNum }" end="${pager.lastNum}" var="i">
+    
+    <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+    
+    </c:forEach>
+    <c:if test="${pager.next }">
+    <li class="page-item">
+      <a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    </c:if>
+  </ul>
+</nav>
+
+	
 
 <div class="input-group mb-3">
   	<form action="./list" method="get" id="frm">

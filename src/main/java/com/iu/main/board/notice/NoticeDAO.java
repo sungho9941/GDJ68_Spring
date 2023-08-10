@@ -16,6 +16,14 @@ public class NoticeDAO implements BoardDAO{
 	private SqlSession session;
 	private final String NAMESPACE="com.iu.main.board.notice.NoticeDAO.";
 	
+	public NoticeFileDTO getFileDetail(NoticeFileDTO noticeFileDTO) throws Exception{
+		return session.selectOne(NAMESPACE+"getFileDetail", noticeFileDTO);
+	}
+	
+	public int setFileDelete(NoticeFileDTO noticeFileDTO) throws Exception{
+		return session.delete(NAMESPACE+"setFileDelete", noticeFileDTO);
+	}
+	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 
@@ -52,6 +60,8 @@ public class NoticeDAO implements BoardDAO{
 		return 0;
 	}
 	
-	
+	public int setFileAdd(NoticeFileDTO noticeFileDTO)throws Exception{
+		return session.insert(NAMESPACE+"setFileAdd", noticeFileDTO);
+	}
 	
 }

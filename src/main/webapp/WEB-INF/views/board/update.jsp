@@ -32,9 +32,22 @@
 		</select> -->
 		</p>		
 		
+		<div class="mb-3">
+			<button type="button" id="add">file추가</button>
+		</div>
+
+		<div>
+		<c:forEach items="${dto.dtos}" var="f"></c:forEach>
+			<div class="alert alert-danger" role="alert">
+				${f.originalName} 
+			</div>
+			<span class="delets" data-delete-num="${f.fileNum}">xxx</span>
+		</div>
+		
 		<button type="submit">등록</button>
 	</form>
 		
+	<script src="../resources/js/file.js"></script>
 </body>
 </html>
 </body>

@@ -6,6 +6,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.iu.main.bankBook.BankBookDTO" alias="BankBookDTO"/>
+		<typeAlias type="com.iu.main.bankBook.comment.CommentDTO" alias="CommentDTO"/>
 		<typeAlias type="com.iu.main.bankBook.BankBookFileDTO" alias="BankBookFileDTO"/>
 		<typeAlias type="com.iu.main.member.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.iu.main.board.BoardDTO" alias="BoardDTO"/>
@@ -15,10 +16,12 @@
 		<typeAlias type="com.iu.main.board.notice.NoticeFileDTO" alias="NoticeFileDTO"/>
 		<typeAlias type="com.iu.main.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.iu.main.board.qna.QnaFileDTO" alias="QnaFileDTO"/>
+		<typeAlias type="com.iu.main.bookAccount.BookAccountDTO" alias="BookAccountDTO"/>
 		
 		
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="java.util.List" alias="List"/>
+		<typeAlias type="java.util.Map" alias="Map"/>
 		
 		
 	</typeAliases>

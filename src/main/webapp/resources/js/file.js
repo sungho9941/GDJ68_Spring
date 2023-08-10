@@ -1,16 +1,38 @@
 const add = document.getElementById("add");
 const fileList = document.getElementById("fileList");
 
-
+const delets = document.getElementsByClassName("delets");
+for(del of delets){
+    del.addEventListener("click", function(){
+        let num = this.getAttribute("data-delete-num");
+        let check = confirm("ㅅㅈㅅ ㅂㄱㅂㄱ");
+        if(check){
+            fetch("./fileDelete?fileNum="+num, {method:"get"})
+            .then((result)=>{return result.text()})
+            .then((r)=>{
+                if(r.trim()=='1'){
+                    this.previousSibling.previousSibling.remove();
+                    this.remove();
+                    count--;
+                }
+                
+            })
+        }
+    });
+}
 
 
 
 let max = 5;
 let count=0;
+if(delets !=null){
+    count=delets.length;
+}
 let idx=0;
 
+/*
 fileList.addEventListener("click", function(event){
-    console.log(event.target);
+    console.log(event.target, "asd");
     let cl = event.target.classList;
     if(event.target.classList.contains("df")){
         let deleteId = event.target.getAttribute("data-id");
@@ -18,16 +40,26 @@ fileList.addEventListener("click", function(event){
         count--;
     }
 })
+*/
+$("#fileList").on("click", ".df", function(){
+    // let deleteId = $(this).attr("data-id")
+    // $("#" + deleteId).remove();
+    $(this).parent().remove();
+    
+    count--;
+})
 
+
+/*
 add.addEventListener("click", function(){
-
+    
     if(count>=max){
         alert("최대 5개만 가능");
         return;
     }
     count++;
-
-
+    
+    
     let d = document.createElement("div");
     let a = document.createAttribute("class");
     a.value="input-group mb-3";
@@ -37,8 +69,8 @@ add.addEventListener("click", function(){
     a.value="file"+idx;
     d.setAttributeNode(a);
     
-
-
+    
+    
     let i = document.createElement("input");
     
     a = document.createAttribute("type");
@@ -76,4 +108,18 @@ add.addEventListener("click", function(){
     fileList.appendChild(d);
     idx++;
 })
+*/ 
 
+$("#add").click(function(){
+    if(count>=max){
+        alert("최대 5개만 가능");
+        return;
+    }
+    count++;
+
+    let r = '<div class="input-group mb-3" id="file' + idx + '">';
+    r = r + '<input type="file" class="form-control" id="photos" name="photos">';
+    r = r + '<span class="df" data-id="file' + idx+ '">XXXXXXXXXX</span>' ;
+    r = r + '</div>';
+    $("#fileList").append(r);
+})

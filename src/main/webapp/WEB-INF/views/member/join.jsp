@@ -15,6 +15,7 @@
 	<h1 class="mt-4 mb-4">join page</h1>
 	
 	
+	
 	<form action="./join" method="post" enctype="multipart/form-data" id="frm">
 	<div class="mb-4">
 	 <label for="id" class="form-label">id</label>

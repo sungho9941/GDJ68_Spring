@@ -21,6 +21,10 @@ public class MemberService {
 		@Autowired
 		private FileManager fileManager;
 		
+		public Long getId(MemberDTO memberDTO) throws Exception{
+			return memberDAO.getId(memberDTO);
+		}
+		
 		public int setJoin(MemberDTO memberDTO, MultipartFile multipartFile, HttpSession session) throws Exception{
 			//파일의 정보를 이용해서 HDD에 파일을 저장
 			

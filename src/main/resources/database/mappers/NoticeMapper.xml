@@ -66,13 +66,13 @@
 		<result column="boardDate" property="date" />
 		<result column="boardHit" property="hit" />
 		
-		<!-- 
-		<collection property="noticeFileDTOs" javaType="List" ofType="NoticeFileDTO">
+		
+		<collection property="dtos" javaType="List" ofType="NoticeFileDTO">
 			<id column="fileNum" property="fileNum" />
 			<result column="fileName" property="fileName" />
-			<result column="originalFileName" property="originalFileName" />
+			<result column="originalName" property="originalName" />
 		</collection>
-		 -->
+		
 	</resultMap>
 	
 	<insert id="setAdd" parameterType="NoticeDTO">
@@ -84,7 +84,7 @@
 	</insert>
 	
 	<insert id="setFileAdd" parameterType="NoticeFileDTO">
-		INSERT INTO boardFile VALUES(file_seq.NEXTVAL, #{boardNum}, #{fileName}, #{originalFileName})
+		INSERT INTO boardFile VALUES(file_seq.NEXTVAL, #{boardNum}, #{fileName}, #{originalName})
 	</insert>
 	
 	<update id="setUpdate" parameterType="NoticeDTO">
@@ -97,4 +97,12 @@
 	<delete id="setDelete" parameterType="NoticeDTO">
 		DELETE FROM board WHERE boardNum = #{boardNum}
 	</delete>
+	
+	<delete id="setFileDelete" parameterType="NoticeFileDTO">
+		DELETE BOARDFILE WHERE FILENUM = #{fileNum}
+	</delete>
+	
+	<select id="getFileDetail" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
+		SELECT FILENUM, FILENAME FROM NOTICEFILE WHERE FILENUM = #{fileNum}
+	</select>
 </mapper>

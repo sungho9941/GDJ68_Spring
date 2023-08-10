@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.main.board.BoardDTO;
 import com.iu.main.board.BoardService;
+import com.iu.main.board.notice.NoticeFileDTO;
 import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
 
@@ -54,12 +55,15 @@ public class QnaService implements BoardService{
 					}
 				}
 				
-				
 				return result;
+				
+				
 	}
 
+	
+	
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
+	public int setUpdate(BoardDTO boardDTO, MultipartFile [] files, HttpSession session) throws Exception {
 		
 		return qnaDAO.setUpdate(boardDTO);
 	}

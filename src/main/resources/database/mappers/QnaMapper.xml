@@ -71,6 +71,14 @@
 	  		<result column="BOARDCONTENTS" property="contents"/>
 	  		<result column="BOARDDATE" property="date"/>
 	  		<result column="BOARDHIT" property="hit"/>
+	  		<result column="REF" property="ref"/>
+	  		<result column="STEP" property="step"/>
+	  		<result column="DEPTH" property="depth"/>
+	  		<collection property="dtos" javaType="List" ofType="QnaFileDTO">
+	  			<id column="FILENUM" property="fileNum"/>
+	  			<result column="FILENAME" property="fileName"/>
+	  			<result column="ORIGINALNAME" property="originalName"/>
+  			</collection>
 	  		</resultMap>
 	  	
   	<update id="setStepUpdate" parameterType="QnaDTO">
@@ -78,20 +86,31 @@
   		WHERE REF = #{ref} AND STEP > #{step}
   	</update>
 	
+	  	<insert id="setAdd" parameterType="QnaDTO">
+	  		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+	  			SELECT QNA_SEQ.NEXTVAL FROM DUAL
+	  		</selectKey>
+	  		INSERT INTO QNABOARD (BOARDNUM, WRITER, BOARDNAME, BOARDCONTENTS, BOARDDATE, BOARDHIT, REF, STEP, DEPTH)
+	  		VALUES (#{num}, #{writer}, #{name}, #{contents}, sysdate, 0, #{num}, 0, 0)	  	
+	  	</insert>
+	
 	<insert id="setFileAdd" parameterType="QnaFileDTO">
   		INSERT INTO QNAFILE
   		VALUES (FILE_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{originalName} )
   	</insert>
-	  	
-	  	<insert id="setAdd" parameterType="QnaDTO">
-	  		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
-	  			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
-	  		</selectKey>
-	  	
-	  		INSERT INTO QNABOARD (BOARDNUM, WRITER, BOARDNAME, BOARDCONTENTS, BOARDDATE, BOARDHIT, REF, STEP, DEPTH)
-	  		VALUES (#{num}, #{writer}, #{name}, #{contents}, sysdate, 0, #{num}, 0, 0)
-	  	
-	  	</insert>
+
+	<!-- 
+	<insert id="setAdd" parameterType="QnaDTO">
+		<selectKey resultType="Long" keyProperty="boardNum"
+			order="BEFORE">
+			SELECT QNA_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNABOARD
+		(BOARDNUM, WRITER, BOARDNAME, BOARDCONTENTS, BOARDDATE, BOARDHIT, REF, STEP,DEPTH) 
+		VALUES (#{boardNum}, #{writer}, #{boardName}, #{boardContents}, SYSDATE, 0, #{boardNum}, 0, 0)
+	</insert>
+	 -->
+	
 	
 	<insert id="setReplyAdd" parameterType="QnaDTO">
 		<selectKey keyProperty="num" resultType="Long" order="BEFORE">

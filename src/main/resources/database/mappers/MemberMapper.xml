@@ -5,6 +5,10 @@
   
   <mapper namespace="com.iu.main.member.MemberDAO">
   
+  <select id="getId" resultType="Long" parameterType="MemberDTO">
+  	SELECT count(*) FROM MEMBER WHERE ID = #{id}
+  </select>
+  
   <insert id="setFileJoin" parameterType="MemberFileDTO">
   		INSERT INTO MEMBERFILE 
   		VALUES (FILE_SEQ.NEXTVAL, #{id}, #{fileName}, #{originalName})

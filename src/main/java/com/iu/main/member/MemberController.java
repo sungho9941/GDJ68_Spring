@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +17,15 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping(value = "duplicateId")
+	public String getId(MemberDTO memberDTO, Model model) throws Exception{
+		long a = memberService.getId(memberDTO);
+		System.out.println(a + "sadsad");
+		model.addAttribute("result", a);
+		return "commons/ajaxResult";
+	}
+	
+	
 	@RequestMapping(value = "join", method = RequestMethod.GET)
 	public void setJoin() throws Exception{
 		
@@ -23,6 +34,7 @@ public class MemberController {
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String setJoin(MemberDTO memberDTO, MultipartFile pic, HttpSession session) throws Exception{
 		int result = memberService.setJoin(memberDTO, pic, session);
+		
 		
 		return "redirect:../";
 	}
