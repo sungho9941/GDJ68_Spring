@@ -43,7 +43,7 @@
 		</c:otherwise>
 	</c:choose>
 	
-
+	
 	
 	
 	<a href="./update?bookNum=${dto.bookNum}">수정</a>
@@ -63,11 +63,9 @@
 		
 		<div id="commentList">
 			<table>
-				<thead>
-					<tr>
-						<th></th>
-					</tr>
-				</thead>
+				<div id="more">
+					<button></button>
+				</div>
 			</table>
 		</div>
 
@@ -110,8 +108,17 @@
 		setBookNum(${dto.bookNum});
 	</script> -->
 	
+	
+
 	<script type="text/javascript">
 		 const add = document.getElementById("add");
+
+		 let bn=$("#add").attr("data-add-num");
+
+		 getCommentList()
+		 function getCommentList(bn, page){
+
+		}
 
 		//  add.addEventListener("click", function(){
 		//  	let bookNum=add.getAttribute("data-add-num");

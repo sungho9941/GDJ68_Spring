@@ -95,7 +95,7 @@
 	
 	 -->
 	<delete id="setDelete" parameterType="NoticeDTO">
-		DELETE FROM board WHERE boardNum = #{boardNum}
+		DELETE FROM board WHERE boardNum = #{num}
 	</delete>
 	
 	<delete id="setFileDelete" parameterType="NoticeFileDTO">

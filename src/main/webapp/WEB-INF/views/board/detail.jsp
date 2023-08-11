@@ -18,15 +18,16 @@
 <c:import url="../temp/header.jsp"></c:import>
 
 
-	<h1>detail page</h1>
+	<h1>${board} detail page</h1>
 	
 	<!-- Getter 이름 : 메서드에서 get을 제외하고 첫 번째 글자를 소문자로 바꾼 것 -->
-	작성자 <textarea class="form-control mb-5">${dto.writer}</textarea><h1></h1>	
+	<%-- 작성자 <textarea class="form-control mb-5">${dto.writer}</textarea> --%>
+	작성자<h1>${dto.writer}</h1>	
 	제목 <h1>${dto.name}</h1>
 	내용 <h1>${dto.contents}</h1>
 	작성일 <h1>${dto.date}</h1>
 	
-
+	
 
 		<div>
 			<c:forEach items="${dto.dtos}" var="f">

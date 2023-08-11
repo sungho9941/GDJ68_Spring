@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 
 <c:import url="../temp/bootStrap.jsp"></c:import>
-
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 
@@ -48,6 +49,12 @@
 	</form>
 		
 	<script src="../resources/js/file.js"></script>
+	
+	<script>
+	$('#contents').summernote({
+		 height: 400
+	 });
+	</script>
 </body>
 </html>
 </body>

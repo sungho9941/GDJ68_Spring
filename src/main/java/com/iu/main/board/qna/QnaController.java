@@ -41,6 +41,7 @@ public class QnaController {
 	public String getDetail(QnaDTO qnaDTO, Model model) throws Exception{
 		BoardDTO boardDTO = qnaService.getDetail(qnaDTO);
 		model.addAttribute("dto", boardDTO);
+		
 		return "board/detail";
 	}
 	

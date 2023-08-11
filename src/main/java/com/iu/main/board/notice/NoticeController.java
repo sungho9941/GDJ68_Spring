@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +29,24 @@ public class NoticeController {
 	@ModelAttribute("board")
 	public String getBoardName() {
 		return "notice";
+	}
+	
+	@PostMapping("setContentsImgDelete")
+	public String setContentsImgDelete(String path, HttpSession session, Model model) throws Exception{
+		boolean check = noticeService.setContentsImgDelete(path, session);
+		model.addAttribute("result", check);
+		
+		return "commons/ajaxResult";
+	}
+	
+	@PostMapping("setContentsImg")
+	public String setContentsImg(MultipartFile files, HttpSession session, Model model) throws Exception{
+		System.out.println("setcon");
+		System.out.println(files.getOriginalFilename());
+		String path = noticeService.setContentsImg(files, session);
+		model.addAttribute("result", path);
+		
+		return "commons/ajaxResult";
 	}
 	
 	@GetMapping(value = "fileDelete")
@@ -93,5 +112,13 @@ public class NoticeController {
 		model.addAttribute("message", message);
 		model.addAttribute("url", "list");		
 		return "commons/result";
+	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public String setDelete(NoticeDTO noticeDTO) throws Exception{
+		int result = noticeService.setDelete(noticeDTO);
+		
+		return "redirect:./list";
+		
 	}
 }

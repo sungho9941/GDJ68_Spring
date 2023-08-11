@@ -47,7 +47,7 @@ public class NoticeDAO implements BoardDAO{
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		
-		return 0;
+		return session.delete(NAMESPACE+"setDelete", boardDTO);
 	}
 	@Override
 	public Long getTotal(Pager pager) throws Exception {

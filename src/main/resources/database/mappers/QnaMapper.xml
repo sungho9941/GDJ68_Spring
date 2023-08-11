@@ -56,13 +56,13 @@
   	
   	
   	<select id="getDetail" parameterType="QnaDTO" resultMap="getDetailResult">
-	  		SELECT * FROM QNABOARD WHERE BOARDNUM=#{num}
-<!-- 	  		SELECT Q.*, QF.*
+	  		<!-- SELECT * FROM QNABOARD WHERE BOARDNUM=#{num} -->
+ 	  		SELECT Q.*, QF.*
 	  		FROM QNABOARD Q
 	  			 LEFT JOIN
 	  			 QNAFILE QF
-	  			 on Q.QNANUM=QF.QNANUM
-	  		WHERE Q.QNANUM=#{num} -->
+	  			 on Q.BOARDNUM=QF.BOARDNUM
+	  		WHERE Q.BOARDNUM=#{num}
 	  	</select>
   	
 	  	<resultMap type="QnaDTO" id="getDetailResult">
@@ -71,6 +71,7 @@
 	  		<result column="BOARDCONTENTS" property="contents"/>
 	  		<result column="BOARDDATE" property="date"/>
 	  		<result column="BOARDHIT" property="hit"/>
+	  		<result column="WRITER" property="writer"/>
 	  		<result column="REF" property="ref"/>
 	  		<result column="STEP" property="step"/>
 	  		<result column="DEPTH" property="depth"/>
